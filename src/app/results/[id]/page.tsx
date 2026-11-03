@@ -202,6 +202,27 @@ export default function ResultsPage() {
         </div>
 
         <div className="space-y-2">
+          <div className="space-y-2">
+          {/* NEW: product name + photo */}
+          <div className="flex items-center gap-3">
+            {activeProduct?.imageUri && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={activeProduct.imageUri}
+                alt={assessment.productName}
+                className="w-14 h-14 rounded-xl object-cover border border-beige-300 bg-white"
+              />
+            )}
+            <p className="text-lg sm:text-xl font-semibold text-coffee-900 leading-snug">
+              {assessment.productName}
+            </p>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <h1 className="text-2xl sm:text-3xl font-serif font-bold text-coffee-950 tracking-tight">
+              {assessment.headline}
+            </h1>
+          </div>
           <div className="flex items-center gap-2">
             <h1 className="text-2xl sm:text-3xl font-serif font-bold text-coffee-950 tracking-tight">
               {assessment.headline}
