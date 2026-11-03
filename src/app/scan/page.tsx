@@ -23,6 +23,8 @@ import { UserRepository } from '@/lib/storage/userRepository';
 import { SAMPLE_PRODUCTS } from '@/lib/sampleProducts';
 import { AssessmentEngine } from '@/lib/assessment/rulesEngine';
 import { ExtractedProduct } from '@/types/nutrition';
+const zxingControlsRef = useRef<{ stop: () => void } | null>(null);
+import { BrowserMultiFormatReader } from '@zxing/browser';
 
 function FoodScannerContent() {
   const router = useRouter();
@@ -80,8 +82,39 @@ function FoodScannerContent() {
     };
   }, []);
 
+  useEffect(() => {
+  const video = videoRef.current;
+  if (cameraActive && video && mediaStreamRef.current) {
+    video.srcObject = mediaStreamRef.current;
+    video.muted = true;
+    video.play().catch(() => {});
+
+    // NEW: fallback for browsers without native BarcodeDetector
+    if (!('BarcodeDetector' in window)) {
+      const reader = new BrowserMultiFormatReader();
+      reader
+        .decodeFromVideoElement(video, (result) => {
+          if (result) {
+            stopCamera();
+            handleLookupBarcode(result.getText());
+          }
+        })
+        .then((controls) => {
+          zxingControlsRef.current = controls;
+        })
+        .catch((err) => console.warn('ZXing error:', err));
+    }
+  }
+}, [cameraActive]);
+
+
+
   // --- CAMERA BARCODE SCANNER ---
   const stopCamera = () => {
+    // NEW: stop the ZXing fallback scanner
+    zxingControlsRef.current?.stop();
+    zxingControlsRef.current = null;
+
     if (scanIntervalRef.current) {
       clearInterval(scanIntervalRef.current);
       scanIntervalRef.current = null;
@@ -104,10 +137,6 @@ function FoodScannerContent() {
         video: { facingMode: 'environment' },
       });
       mediaStreamRef.current = stream;
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
-        videoRef.current.play();
-      }
       setCameraActive(true);
 
       // Check if native BarcodeDetector API is supported
