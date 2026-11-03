@@ -30,7 +30,7 @@ export class OpenFoodFactsService {
     }
 
     try {
-      const url = `${OFF_API_BASE}/${encodeURIComponent(cleanBarcode)}.json?fields=code,product_name,brands,ingredients_text,ingredients_tags,allergens_tags,nutriments,serving_size,serving_quantity,quantity,image_front_url,nova_group,ecoscore_grade`;
+      const url = `${OFF_API_BASE}/${encodeURIComponent(cleanBarcode)}.json?fields=code,product_name,product_name_en,generic_name,brands,categories,ingredients_text,ingredients_tags,allergens_tags,nutriments,serving_size,serving_quantity,quantity,image_front_url,nova_group,ecoscore_grade`;
       const response = await fetch(url, {
         headers: {
           'User-Agent': 'NutriAgent - Web - Version 1.0 - www.nutriagent.local',
@@ -74,7 +74,7 @@ export class OpenFoodFactsService {
     try {
       const url = `${OFF_SEARCH_BASE}?search_terms=${encodeURIComponent(
         cleanQuery
-      )}&search_simple=1&action=process&json=1&page_size=${limit}&fields=code,product_name,brands,ingredients_text,ingredients_tags,allergens_tags,nutriments,serving_size,serving_quantity,quantity,image_front_url,nova_group,ecoscore_grade`;
+        )}&search_simple=1&action=process&json=1&page_size=${limit}&fields=code,product_name,product_name_en,generic_name,brands,categories,ingredients_text,ingredients_tags,allergens_tags,nutriments,serving_size,serving_quantity,quantity,image_front_url,nova_group,ecoscore_grade`;
 
       const response = await fetch(url, {
         headers: {
@@ -109,6 +109,28 @@ export class OpenFoodFactsService {
     }
   }
 
+    /**
+   * Builds a clean, complete product name from the raw Open Food Facts fields
+   */
+  private static buildProductName(raw: any): string {
+    const base = (raw.product_name || raw.product_name_en || raw.generic_name || '')
+      .replace(/\s+/g, ' ')
+      .trim();
+    const brand = (raw.brands || '').split(',')[0].trim();
+
+    if (!base) return brand ? `${brand} Product` : 'Packaged Food Product';
+
+    // Capitalize the first letter of each word: "hide & seek" -> "Hide & Seek"
+    const nice = base.replace(/(^|[\s(&/-])([a-z])/g, (_m: string, p: string, c: string) => p + c.toUpperCase());
+
+    // Put the brand in front if the name doesn't already contain it
+    return brand && !nice.toLowerCase().includes(brand.toLowerCase())
+      ? `${brand} ${nice}`
+      : nice;
+  }
+  
+  
+  
   /**
    * Normalizes Open Food Facts raw product JSON into NutriAgent ExtractedProduct
    */
@@ -173,7 +195,7 @@ export class OpenFoodFactsService {
 
     return {
       id: raw.code || barcode || `off-${Date.now()}`,
-      name: raw.product_name || raw.product_name_en || 'Packaged Food Product',
+      name: this.buildProductName(raw),
       brand: raw.brands || undefined,
       barcode: raw.code || barcode,
       category: raw.categories || 'Packaged Foods',
