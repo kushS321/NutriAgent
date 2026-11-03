@@ -23,7 +23,6 @@ import { UserRepository } from '@/lib/storage/userRepository';
 import { SAMPLE_PRODUCTS } from '@/lib/sampleProducts';
 import { AssessmentEngine } from '@/lib/assessment/rulesEngine';
 import { ExtractedProduct } from '@/types/nutrition';
-const zxingControlsRef = useRef<{ stop: () => void } | null>(null);
 import { BrowserMultiFormatReader } from '@zxing/browser';
 
 function FoodScannerContent() {
@@ -75,6 +74,7 @@ function FoodScannerContent() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const mediaStreamRef = useRef<MediaStream | null>(null);
   const scanIntervalRef = useRef<any>(null);
+  const zxingControlsRef = useRef<{ stop: () => void } | null>(null);
 
   useEffect(() => {
     return () => {
