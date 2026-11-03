@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #FAF7F2;
+  --foreground: #2D1E18;
+  --card-bg: #FFFFFF;
+  --border-warm: #EFE8DF;
+}
+
+body {
+  color: var(--foreground);
+  background-color: var(--background);
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Warm Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #F5EFEB;
+}
+::-webkit-scrollbar-thumb {
+  background: #D7CCC0;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B8A38B;
+}
+
+/* Accessible Warm Focus Ring */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #3D271D;
+  outline-offset: 2px;
+}
+
+/* Pencil Button Component Classes */
+@layer components {
+  /* Soft Sage Green: for positive nutrition insights, success, healthy actions */
+  .btn-pencil-sage {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-medium text-sm transition-all
+           bg-[#E4F1E9] text-[#275A3A] border border-[#A7D1B7] hover:bg-[#D1E7DD] active:scale-[0.99] shadow-subtle;
+  }
+
+  /* Muted Peach: for secondary actions, review, moderate highlights */
+  .btn-pencil-peach {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-medium text-sm transition-all
+           bg-[#FDE8E0] text-[#8D3418] border border-[#F7B29B] hover:bg-[#FCD8CC] active:scale-[0.99] shadow-subtle;
+  }
+
+  /* Dusty Blue: for informational actions, lookup, search, guide */
+  .btn-pencil-blue {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-medium text-sm transition-all
+           bg-[#E5F0FA] text-[#254F75] border border-[#ABCFF0] hover:bg-[#D5E6F8] active:scale-[0.99] shadow-subtle;
+  }
+
+  /* Pale Yellow: for highlights, flags, tips */
+  .btn-pencil-yellow {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-medium text-sm transition-all
+           bg-[#FDF9D7] text-[#715707] border border-[#FAF0AE] hover:bg-[#F8F2B8] active:scale-[0.99] shadow-subtle;
+  }
+
+  /* Terracotta: for important alerts, primary action alternative */
+  .btn-pencil-terracotta {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-medium text-sm transition-all
+           bg-[#E07A5F] text-white border border-[#C85C40] hover:bg-[#D0684C] active:scale-[0.99] shadow-warm;
+  }
+
+  /* Dark Chocolate Brown: for primary call-to-actions and high-contrast anchors */
+  .btn-pencil-brown {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-medium text-sm transition-all
+           bg-[#3D271D] text-[#FAF7F2] border border-[#2D1E18] hover:bg-[#2D1E18] active:scale-[0.99] shadow-warm;
+  }
+
+  /* Warm Card Style */
+  .card-warm {
+    @apply bg-white rounded-2xl border border-beige-200/90 shadow-warm p-5 sm:p-6 transition-all;
+  }
+
+  /* Pencil Badges */
+  .badge-pencil-sage {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold
+           bg-[#E4F1E9] text-[#275A3A] border border-[#A7D1B7];
+  }
+  .badge-pencil-peach {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold
+           bg-[#FDE8E0] text-[#8D3418] border border-[#F7B29B];
+  }
+  .badge-pencil-blue {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold
+           bg-[#E5F0FA] text-[#254F75] border border-[#ABCFF0];
+  }
+  .badge-pencil-yellow {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold
+           bg-[#FDF9D7] text-[#715707] border border-[#FAF0AE];
+  }
+  .badge-pencil-terracotta {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold
+           bg-[#FCE6DF] text-[#A8442A] border border-[#F1A593];
+  }
+}
