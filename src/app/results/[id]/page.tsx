@@ -202,7 +202,6 @@ export default function ResultsPage() {
         </div>
 
         <div className="space-y-2">
-          <div className="space-y-2">
           {/* NEW: product name + photo */}
           <div className="flex items-center gap-3">
             {activeProduct?.imageUri && (
@@ -218,11 +217,6 @@ export default function ResultsPage() {
             </p>
           </div>
 
-          <div className="flex items-center gap-2">
-            <h1 className="text-2xl sm:text-3xl font-serif font-bold text-coffee-950 tracking-tight">
-              {assessment.headline}
-            </h1>
-          </div>
           <div className="flex items-center gap-2">
             <h1 className="text-2xl sm:text-3xl font-serif font-bold text-coffee-950 tracking-tight">
               {assessment.headline}
