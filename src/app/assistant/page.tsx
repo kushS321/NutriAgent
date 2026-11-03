@@ -19,6 +19,22 @@ import {
 import { UserRepository } from '@/lib/storage/userRepository';
 import { ExtractedProduct, UserProfile, AssistantChatMessage } from '@/types/nutrition';
 
+
+// Turns **bold**, *italic* and "* bullets" from the answer text into clean formatting
+function renderInline(text: string): React.ReactNode[] {
+  const cleaned = text.replace(/^\s*[*-]\s+/gm, '• ');
+  const parts = cleaned.split(/(\*\*[^*]+\*\*|\*[^*\n]+\*)/g);
+  return parts.map((part, i) => {
+    if (part.startsWith('**') && part.endsWith('**') && part.length > 4) {
+      return <strong key={i} className="font-semibold">{part.slice(2, -2)}</strong>;
+    }
+    if (part.startsWith('*') && part.endsWith('*') && part.length > 2) {
+      return <em key={i}>{part.slice(1, -1)}</em>;
+    }
+    return <React.Fragment key={i}>{part}</React.Fragment>;
+  });
+}
+
 const QUICK_PROMPTS = [
   'Can I eat this product based on my preferences?',
   'What does INS 621 (MSG) mean on an ingredient list?',
@@ -215,7 +231,7 @@ export default function AssistantPage() {
                 <div className="space-y-2 whitespace-pre-wrap">
                   {msg.text.split('\n\n').map((paragraph, idx) => (
                     <p key={idx} className="leading-relaxed">
-                      {paragraph}
+                      {renderInline(paragraph)}
                     </p>
                   ))}
                 </div>
