@@ -350,9 +350,9 @@ export default function LandingPage() {
               <div className="w-10 h-10 rounded-xl bg-[#FAF0AE] text-[#715707] border border-[#F5E47E] flex items-center justify-center">
                 <Scale className="w-5 h-5 text-[#715707]" />
               </div>
-              <h3 className="text-base font-serif font-bold text-coffee-950">
+              {/* <h3 className="text-base font-serif font-bold text-coffee-950">
                 Apples-to-Apples Comparison
-              </h3>
+              </h3> */}
               <p className="text-xs text-coffee-600 leading-relaxed">
                 Compare competing snacks and cereals by normalizing nutrition data to a standard 100g baseline, preventing deceptive serving size tricks.
               </p>

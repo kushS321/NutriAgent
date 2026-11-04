@@ -22,10 +22,10 @@ export default function Footer() {
             <p className="text-xs text-coffee-300 leading-relaxed">
               AI-powered food-label scanning and personal nutrition assistant. Answering “Can I Eat This?” with transparent, evidence-aware decision support.
             </p>
-            <div className="flex items-center gap-2 text-xs text-pencil-sage-300">
+            {/* <div className="flex items-center gap-2 text-xs text-pencil-sage-300">
               <Shield className="w-3.5 h-3.5" />
               <span>ICMR-NIN & FSSAI Grounded</span>
-            </div>
+            </div> */}
           </div>
 
           {/* Core App Navigation */}
@@ -39,21 +39,21 @@ export default function Footer() {
                   Check a Food (Scanner)
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="/meal-planner" className="hover:text-white transition-colors">
                   Meal Planner & Food Diary
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link href="/insights" className="hover:text-white transition-colors">
                   Nutrition Trends & Insights
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="/compare" className="hover:text-white transition-colors">
                   Apples-to-Apples Comparison
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link href="/assistant" className="hover:text-white transition-colors">
                   Nutrition Assistant (AI Chat)

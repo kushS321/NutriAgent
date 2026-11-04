@@ -133,15 +133,16 @@ export default function SignInPage() {
 
         {/* Right Column: Sign In Card */}
         <div className="md:col-span-7 bg-white rounded-3xl border border-beige-300 p-8 sm:p-10 shadow-card space-y-6">
+
+            <h1 className="text-2xl sm:text-3xl font-serif font-bold text-coffee-950">
+              NutriAgent
+            </h1>
           {/* Header */}
           <div className="space-y-1.5">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pencil-sage-50 text-pencil-sage-700 border border-pencil-sage-200 text-xs font-semibold">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Personal Nutrition Hub</span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-serif font-bold text-coffee-950">
-              Sign In to NutriAgent
-            </h1>
             <p className="text-xs sm:text-sm text-coffee-600">
               Access your personalized dietary rules, meal diary, and scanned food verdicts.
             </p>
@@ -233,7 +234,7 @@ export default function SignInPage() {
             </div>
 
             {/* Remember Me Checkbox */}
-            <div className="flex items-center justify-between pt-1">
+            {/* <div className="flex items-center justify-between pt-1">
               <label className="flex items-center gap-2 cursor-pointer select-none">
                 <input
                   type="checkbox"
@@ -243,7 +244,7 @@ export default function SignInPage() {
                 />
                 <span className="text-xs text-coffee-700">Remember me for 30 days</span>
               </label>
-            </div>
+            </div> */}
 
             {/* Submit Button */}
             <button
