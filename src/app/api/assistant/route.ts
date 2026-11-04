@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
           return NextResponse.json({
             success: true,
             answer: responseText,
-            source: 'gemini-1.5-flash',
+            source: 'gemini-2.5-flash',
             disclaimer: 'NutriAgent is an educational decision-support tool, not a medical diagnostic or treatment service.',
           });
         }
@@ -96,7 +96,7 @@ Rules:
 - Ingredients to Avoid: ${profile.customIngredientsToAvoid?.join(', ') || 'None'}`;
   }
 
-  const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+  const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
 
   const res = await fetch(endpoint, {
     method: 'POST',
@@ -108,14 +108,18 @@ Rules:
           parts: [{ text: `${systemPrompt}\n\n${userContext}` }],
         },
       ],
-      generationConfig: {
-        maxOutputTokens: 350,
+        generationConfig: {
+        maxOutputTokens: 800,
         temperature: 0.2,
+        thinkingConfig: { thinkingBudget: 0 },
       },
     }),
   });
 
-  if (!res.ok) return null;
+  if (!res.ok) {
+    console.error('Gemini API error:', res.status, await res.text());
+    return null;
+  }
   const json = await res.json();
   const text = json?.candidates?.[0]?.content?.parts?.[0]?.text;
   return text || null;
