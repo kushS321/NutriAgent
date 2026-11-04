@@ -135,7 +135,7 @@ export default function SignInPage() {
         <div className="md:col-span-7 bg-white rounded-3xl border border-beige-300 p-8 sm:p-10 shadow-card space-y-6">
 
             <h1 className="text-2xl sm:text-3xl font-serif font-bold text-coffee-950">
-              NutriAgent
+              <center>NutriAgent</center>
             </h1>
           {/* Header */}
           <div className="space-y-1.5">
