@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
           return NextResponse.json({
             success: true,
             answer: responseText,
-            source: 'gemini',
+            source: 'gemini-2.5-flash',
             disclaimer: 'NutriAgent is an educational decision-support tool, not a medical diagnostic or treatment service.',
           });
         }
@@ -96,33 +96,33 @@ Rules:
 - Ingredients to Avoid: ${profile.customIngredientsToAvoid?.join(', ') || 'None'}`;
   }
 
-    const models = ['gemini-flash-latest', 'gemini-3.8-flash', 'gemini-3.5-flash'];
-  const body = JSON.stringify({
-    contents: [{ role: 'user', parts: [{ text: `${systemPrompt}\n\n${userContext}` }] }],
-    generationConfig: { maxOutputTokens: 1500, temperature: 0.2 },
+  const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+
+  const res = await fetch(endpoint, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      contents: [
+        {
+          role: 'user',
+          parts: [{ text: `${systemPrompt}\n\n${userContext}` }],
+        },
+      ],
+        generationConfig: {
+        maxOutputTokens: 800,
+        temperature: 0.2,
+        thinkingConfig: { thinkingBudget: 0 },
+      },
+    }),
   });
 
-  for (const model of models) {
-    const res = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
-        body,
-      }
-    );
-    if (res.ok) {
-      const json = await res.json();
-      const text = (json?.candidates?.[0]?.content?.parts ?? [])
-        .map((p: any) => p.text ?? '')
-        .join('')
-        .trim();
-      if (text) return text;
-    } else {
-      console.error(`Gemini ${model} error:`, res.status, await res.text());
-    }
+  if (!res.ok) {
+    console.error('Gemini API error:', res.status, await res.text());
+    return null;
   }
-  return null;
+  const json = await res.json();
+  const text = json?.candidates?.[0]?.content?.parts?.[0]?.text;
+  return text || null;
 }
 
 /**
@@ -307,4 +307,5 @@ function generateRuleBasedAnswer(
     ],
   };
 }
+
 
