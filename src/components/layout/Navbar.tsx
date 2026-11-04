@@ -93,14 +93,14 @@ export default function Navbar() {
           <div className="flex items-center gap-2 sm:gap-3">
             {/* User Profile / Auth Pill */}
             {!isGuest && (
-              <Link href="/profile" className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold text-coffee-800 bg-white rounded-xl border border-beige-300 hover:bg-beige-100 transition-colors shadow-subtle">
-                <div className="w-4 h-4 rounded-full bg-pencil-sage-100 text-pencil-sage-800 flex items-center justify-center text-[10px] font-bold shrink-0">
-                  {userName.charAt(0).toUpperCase()}
-                </div>
-                <span className="max-w-[110px] truncate">{userName}</span>
-              </Link>
-            )}
-            : (
+            //   <Link href="/profile" className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold text-coffee-800 bg-white rounded-xl border border-beige-300 hover:bg-beige-100 transition-colors shadow-subtle">
+            //     <div className="w-4 h-4 rounded-full bg-pencil-sage-100 text-pencil-sage-800 flex items-center justify-center text-[10px] font-bold shrink-0">
+            //       {userName.charAt(0).toUpperCase()}
+            //     </div>
+            //     <span className="max-w-[110px] truncate">{userName}</span>
+            //   </Link>
+            // )}
+            // : (
               <Link
                 href="/profile"
                 className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold text-coffee-800 bg-white rounded-xl border border-beige-300 hover:bg-beige-100 transition-colors shadow-subtle"
@@ -110,7 +110,7 @@ export default function Navbar() {
                 </div>
                 <span className="max-w-[110px] truncate">{userName}</span>
               </Link>
-            )
+            )}
 
             {/* Primary Action Button */}
             <Link
