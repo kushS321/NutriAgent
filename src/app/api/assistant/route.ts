@@ -279,15 +279,27 @@ function generateRuleBasedAnswer(
     };
   }
 
-  // Default Fallback
-  citations.push({
-    source: 'ICMR-NIN Dietary Guidelines for Indians (2024)',
-    guideline: 'Principles of Healthy Eating and Food Label Literacy',
-  });
 
+    // Greetings and small talk
+  const isGreeting =
+    /^\s*(hi+|hello+|hey+|hola|namaste|good (morning|afternoon|evening)|how are (you|u)|what'?s up|sup|thanks|thank you|ok|okay)\b[\s!?.]*$/i.test(q);
+
+  if (isGreeting) {
+    return {
+      text: `Hello! I'm the NutriAgent assistant. I can help you read packaged-food labels, understand additives like INS codes, and check daily sugar, salt and fat limits.\n\nWhat would you like to know?`,
+      citations: [],
+      followUps: [
+        'What does INS 621 (MSG) mean on an ingredient list?',
+        'What are the ICMR-NIN 2024 daily limits for sugar and salt?',
+        'How to spot hidden sugars on labels',
+      ],
+    };
+  }
+
+  // Anything else: don't guess, don't give false information
   return {
-    text: `NutriAgent helps you decode packaged-food labels against verified dietary principles from **ICMR-NIN 2024**, **FSSAI 2022**, and **WHO**.\n\nYou can ask me:\n• *"Can I eat this product with my current profile?"*\n• *"What does INS 621 or INS 322 mean?"*\n• *"How much sugar is allowed per day under ICMR guidelines?"*\n• *"How do I convert sodium to salt?"*\n• *"Explain the difference between per 100g and per serving."*`,
-    citations,
+    text: `Sorry, I couldn't find anything about that in my food and nutrition knowledge, so I won't guess.\n\nI can only help with packaged-food labels, ingredients, additives (INS codes), and daily sugar, sodium and fat limits. You can also scan a product and ask "Can I eat this?"`,
+    citations: [],
     followUps: [
       'What are the ICMR-NIN 2024 daily limits for sugar and salt?',
       'How to spot hidden sugars on labels',
