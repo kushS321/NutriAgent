@@ -1,7 +1,6 @@
 'use client';
 
-// import React, { useState, useEffect, useRef } from 'react';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import {
   Sparkles,
@@ -52,6 +51,7 @@ export default function AssistantPage() {
   const [isTyping, setIsTyping] = useState(false);
   const [activeProduct, setActiveProduct] = useState<ExtractedProduct | null>(null);
   const [profile, setProfile] = useState<UserProfile | null>(null);
+  const chatScrollRef = useRef<HTMLDivElement>(null);
 
   // const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -96,6 +96,13 @@ export default function AssistantPage() {
   // useEffect(() => {
   //   messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   // }, [messages, isTyping]);
+
+    // Scroll only the chat box (not the whole page) when new messages arrive
+  useEffect(() => {
+    if (messages.length <= 1 && !isTyping) return; // skip the initial greeting
+    const el = chatScrollRef.current;
+    if (el) el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' });
+  }, [messages, isTyping]);
 
   const handleSendMessage = async (textToSend?: string) => {
     const text = (textToSend || inputValue).trim();
@@ -193,7 +200,7 @@ export default function AssistantPage() {
       {/* Main Chat Container */}
       <div className="card-warm flex flex-col h-[650px] p-0 overflow-hidden">
         {/* Messages Scroll Area */}
-        <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-5">
+        <div ref={chatScrollRef} className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-5">
           {messages.map((msg) => (
             <div
               key={msg.id}
