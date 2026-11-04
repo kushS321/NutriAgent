@@ -113,13 +113,13 @@ export default function Navbar() {
             )
 
             {/* Primary Action Button */}
-            {/* <Link
+            <Link
               href="/scan"
               className="hidden sm:inline-flex items-center gap-1.5 btn-pencil-brown text-xs py-2 px-3.5 font-bold"
             >
               <Barcode className="w-3.5 h-3.5 text-pencil-sage-300" />
               <span>Check Food</span>
-            </Link> */}
+            </Link>
 
             {/* Mobile Menu Trigger */}
             <button
