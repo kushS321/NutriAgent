@@ -16,6 +16,17 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+
+/* Mobile fit: make page wrappers full width and let them shrink */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+main > * {
+  width: 100%;
+  min-width: 0;
+}
 /* Warm Scrollbar */
 ::-webkit-scrollbar {
   width: 7px;

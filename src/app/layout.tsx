@@ -31,7 +31,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="h-full">
-      <body className="min-h-screen flex flex-col bg-beige-50 text-coffee-900 antialiased selection:bg-pencil-sage-200 selection:text-coffee-950 font-sans">
+      <body className="min-h-screen flex flex-col pb-16 lg:pb-0 bg-beige-50 text-coffee-900 antialiased selection:bg-pencil-sage-200 selection:text-coffee-950 font-sans">
         <DisclaimerBanner />
         <Navbar />
         <main className="flex-1 flex flex-col">{children}</main>

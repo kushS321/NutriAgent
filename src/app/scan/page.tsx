@@ -372,14 +372,14 @@ function FoodScannerContent() {
       </div>
 
       {/* Mode Switcher Tabs */}
-      <div className="flex justify-center overflow-x-auto no-scrollbar pb-1">
-        <div className="bg-beige-200/90 p-1 rounded-2xl inline-flex gap-1 border border-beige-300 shadow-subtle">
+      <div className="flex justify-center pb-1">
+        <div className="bg-beige-200/90 p-1 rounded-2xl grid grid-cols-2 sm:inline-flex w-full sm:w-auto gap-1 border border-beige-300 shadow-subtle">
           <button
             onClick={() => {
               setActiveTab('barcode');
               setErrorMessage(null);
             }}
-            className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            className={`flex items-center justify-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
               activeTab === 'barcode'
                 ? 'bg-white text-coffee-950 shadow-subtle'
                 : 'text-coffee-700 hover:text-coffee-950'
@@ -395,7 +395,7 @@ function FoodScannerContent() {
               stopCamera();
               setErrorMessage(null);
             }}
-            className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            className={`flex items-center justify-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
               activeTab === 'search'
                 ? 'bg-white text-coffee-950 shadow-subtle'
                 : 'text-coffee-700 hover:text-coffee-950'
@@ -411,7 +411,7 @@ function FoodScannerContent() {
               stopCamera();
               setErrorMessage(null);
             }}
-            className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            className={`flex items-center justify-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
               activeTab === 'upload'
                 ? 'bg-white text-coffee-950 shadow-subtle'
                 : 'text-coffee-700 hover:text-coffee-950'
@@ -427,7 +427,7 @@ function FoodScannerContent() {
               stopCamera();
               setErrorMessage(null);
             }}
-            className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+            className={`flex items-center justify-center gap-1.5 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
               activeTab === 'manual'
                 ? 'bg-white text-coffee-950 shadow-subtle'
                 : 'text-coffee-700 hover:text-coffee-950'
