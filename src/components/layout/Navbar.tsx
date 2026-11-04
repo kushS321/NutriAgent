@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import {
   Sparkles,
   Barcode,
@@ -17,12 +17,12 @@ import {
   X,
   ShieldCheck,
   LogOut,
-  LogIn,
 } from 'lucide-react';
 import { UserRepository } from '@/lib/storage/userRepository';
 
 export default function Navbar() {
   const pathname = usePathname();
+  const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isGuest, setIsGuest] = useState(true);
   const [userName, setUserName] = useState('Guest');
@@ -92,25 +92,15 @@ export default function Navbar() {
           {/* Right items */}
           <div className="flex items-center gap-2 sm:gap-3">
             {/* User Profile / Auth Pill */}
-            {isGuest ? (
-              <div className="flex items-center gap-1.5">
-                <Link
-                  href="/auth/signin"
-                  className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold text-coffee-800 bg-white rounded-xl border border-beige-300 hover:bg-beige-100 transition-colors shadow-subtle"
-                >
-                  <LogIn className="w-3.5 h-3.5 text-pencil-sage-600" />
-                  <span>Sign In</span>
-                </Link>
-                <Link
-                  href="/profile"
-                  className="hidden md:inline-flex items-center gap-1 px-2 py-1 text-[11px] font-medium text-coffee-600 hover:text-coffee-950"
-                  title="Guest Settings"
-                >
-                  <User className="w-3.5 h-3.5 text-pencil-peach-600" />
-                  <span>Guest</span>
-                </Link>
-              </div>
-            ) : (
+            {!isGuest && (
+              <Link href="/profile" className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold text-coffee-800 bg-white rounded-xl border border-beige-300 hover:bg-beige-100 transition-colors shadow-subtle">
+                <div className="w-4 h-4 rounded-full bg-pencil-sage-100 text-pencil-sage-800 flex items-center justify-center text-[10px] font-bold shrink-0">
+                  {userName.charAt(0).toUpperCase()}
+                </div>
+                <span className="max-w-[110px] truncate">{userName}</span>
+              </Link>
+            )}
+            : (
               <Link
                 href="/profile"
                 className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold text-coffee-800 bg-white rounded-xl border border-beige-300 hover:bg-beige-100 transition-colors shadow-subtle"
@@ -120,7 +110,7 @@ export default function Navbar() {
                 </div>
                 <span className="max-w-[110px] truncate">{userName}</span>
               </Link>
-            )}
+            )
 
             {/* Primary Action Button */}
             <Link
@@ -168,23 +158,29 @@ export default function Navbar() {
             })}
           </div>
 
-          <div className="pt-3 border-t border-beige-200 flex items-center justify-between">
-            <Link
-              href="/profile"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-xs font-semibold text-coffee-800 flex items-center gap-2"
-            >
-              <User className="w-4 h-4 text-pencil-sage-600" />
-              <span>{isGuest ? 'Guest Settings' : `${userName} Profile`}</span>
-            </Link>
-            <Link
-              href="/auth/signin"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-xs text-pencil-terracotta-600 font-bold"
-            >
-              {isGuest ? 'Sign In' : 'Switch Account'}
-            </Link>
-          </div>
+          {!isGuest && (
+            <div className="pt-3 border-t border-beige-200 flex items-center justify-between">
+              <Link
+                href="/profile"
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-xs font-semibold text-coffee-800 flex items-center gap-2"
+              >
+                <User className="w-4 h-4 text-pencil-sage-600" />
+                <span>{userName} Profile</span>
+              </Link>
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  UserRepository.logoutUser();
+                  UserRepository.clearEntered();
+                  router.push('/auth/signin');
+                }}
+                className="text-xs text-pencil-terracotta-600 font-bold"
+              >
+                Sign Out
+              </button>
+            </div>
+          )}
         </div>
       )}
     </header>

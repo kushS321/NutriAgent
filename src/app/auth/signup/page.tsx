@@ -126,8 +126,9 @@ export default function SignUpPage() {
         profile.isGuest = false;
         UserRepository.saveProfile(profile);
 
-        setSuccessMessage('Account created! Taking you to your profile setup...');
-        setTimeout(() => router.push('/profile'), 700);
+        UserRepository.markEntered();
+        setSuccessMessage('Account created! Opening your dashboard...');
+        setTimeout(() => router.push('/dashboard'), 700);
       } else {
         // Register in local-first multi-account store
         const result = await UserRepository.registerUser(cleanName, cleanEmail, password);
@@ -135,8 +136,9 @@ export default function SignUpPage() {
           throw new Error(result.error || 'Failed to register account.');
         }
 
-        setSuccessMessage('Account registered successfully! Opening your personalized profile...');
-        setTimeout(() => router.push('/profile'), 700);
+        UserRepository.markEntered();
+        setSuccessMessage('Account registered successfully! Opening your dashboard...');
+        setTimeout(() => router.push('/dashboard'), 700);
       }
     } catch (err: any) {
       setErrorMessage(err.message || 'Registration failed. Please check your information.');

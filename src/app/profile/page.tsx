@@ -406,6 +406,7 @@ export default function ProfilePage() {
   // Sign out
   const handleSignOut = () => {
     UserRepository.logoutUser();
+    UserRepository.clearEntered();
     router.push('/auth/signin');
   };
 

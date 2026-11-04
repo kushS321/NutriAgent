@@ -71,6 +71,7 @@ export default function SignInPage() {
         profile.isGuest = false;
         profile.name = cleanEmail.split('@')[0];
         UserRepository.saveProfile(profile);
+        UserRepository.markEntered();
 
         setSuccessMessage('Signed in successfully! Opening your dashboard...');
         setTimeout(() => router.push('/dashboard'), 700);
@@ -80,7 +81,7 @@ export default function SignInPage() {
         if (!result.success) {
           throw new Error(result.error || 'Invalid email or password.');
         }
-
+        UserRepository.markEntered();
         setSuccessMessage(`Welcome back, ${result.user?.name || 'Explorer'}! Redirecting...`);
         setTimeout(() => router.push('/dashboard'), 600);
       }
@@ -93,6 +94,7 @@ export default function SignInPage() {
 
   const handleContinueGuest = () => {
     UserRepository.logoutUser();
+    UserRepository.markEntered();
     router.push('/dashboard');
   };
 

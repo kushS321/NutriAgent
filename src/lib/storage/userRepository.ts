@@ -26,6 +26,7 @@ const STORAGE_KEYS = {
   ACCOUNTS: 'nutriagent_registered_accounts',
   SESSION: 'nutriagent_auth_session',
   DOCUMENTS: 'nutriagent_medical_documents',
+  ENTERED: 'nutriagent_entered',
 };
 
 interface StoredAccount {
@@ -582,6 +583,22 @@ export class UserRepository {
     } catch {
       return null;
     }
+  }
+
+// "Entered" = the visitor has signed in, registered, or chosen Continue as Guest.
+  public static markEntered(): void {
+    if (typeof window === 'undefined') return;
+    try { localStorage.setItem(STORAGE_KEYS.ENTERED, '1'); } catch {}
+  }
+
+  public static hasEntered(): boolean {
+    if (typeof window === 'undefined') return false;
+    try { return localStorage.getItem(STORAGE_KEYS.ENTERED) === '1'; } catch { return false; }
+  }
+
+  public static clearEntered(): void {
+    if (typeof window === 'undefined') return;
+    try { localStorage.removeItem(STORAGE_KEYS.ENTERED); } catch {}
   }
 
   public static logoutUser(): void {
