@@ -292,7 +292,6 @@ export default function SignInPage() {
             >
               <span>Continue as Guest</span>
               <span className="text-[10px] text-coffee-500 font-normal">
-                (Runs 100% locally on this device)
               </span>
             </button>
           </div>
