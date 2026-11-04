@@ -3,7 +3,7 @@ import './globals.css';
 import Navbar from '@/components/layout/Navbar';
 import BottomNav from '@/components/layout/BottomNav';
 import Footer from '@/components/layout/Footer';
-import DisclaimerBanner from '@/components/common/DisclaimerBanner';
+// import DisclaimerBanner from '@/components/common/DisclaimerBanner';
 import AuthGate from '@/components/auth/AuthGate';
 
 export const metadata: Metadata = {
@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body className="min-h-screen flex flex-col pb-16 lg:pb-0 bg-beige-50 text-coffee-900 antialiased selection:bg-pencil-sage-200 selection:text-coffee-950 font-sans">
-        <DisclaimerBanner />
+        {/* <DisclaimerBanner /> */}
         <Navbar />
         <main className="flex-1 flex flex-col"><AuthGate>{children}</AuthGate></main>
         <BottomNav />
