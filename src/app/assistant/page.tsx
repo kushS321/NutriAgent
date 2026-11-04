@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+// import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   Sparkles,
@@ -52,7 +53,7 @@ export default function AssistantPage() {
   const [activeProduct, setActiveProduct] = useState<ExtractedProduct | null>(null);
   const [profile, setProfile] = useState<UserProfile | null>(null);
 
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  // const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const loadedProfile = UserRepository.getProfile();
@@ -92,9 +93,9 @@ export default function AssistantPage() {
     setMessages([initialGreeting]);
   }, []);
 
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages, isTyping]);
+  // useEffect(() => {
+  //   messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  // }, [messages, isTyping]);
 
   const handleSendMessage = async (textToSend?: string) => {
     const text = (textToSend || inputValue).trim();
@@ -303,7 +304,7 @@ export default function AssistantPage() {
             </div>
           )}
 
-          <div ref={messagesEndRef} />
+          {/* <div ref={messagesEndRef} /> */}
         </div>
 
         {/* Quick Prompt Carousel */}
