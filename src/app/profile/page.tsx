@@ -500,9 +500,9 @@ export default function ProfilePage() {
                 {profile.isGuest ? 'Guest Mode' : 'Verified Member'}
               </span>
             </div>
-            <p className="text-xs text-coffee-600">
+            {/* <p className="text-xs text-coffee-600">
               {profile.email || 'Local device storage — no cloud accounts linked'}
-            </p>
+            </p> */}
             <p className="text-[11px] text-coffee-400">
               Last updated: {new Date(profile.updatedAt).toLocaleDateString()}
             </p>
@@ -1094,10 +1094,10 @@ export default function ProfilePage() {
           {activeTab === 'allergies' && (
             <div className="space-y-6">
               <div className="space-y-1">
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-red-100 text-red-800 text-[10px] font-bold">
+                {/* <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-red-100 text-red-800 text-[10px] font-bold">
                   <Shield className="w-3 h-3 text-red-600" />
                   <span>Safety-Critical Priority</span>
-                </div>
+                </div> */}
                 <h2 className="text-lg font-serif font-bold text-coffee-950">
                   Section D: Allergies &amp; Food Intolerances
                 </h2>
@@ -1210,10 +1210,10 @@ export default function ProfilePage() {
           {activeTab === 'medical' && (
             <div className="space-y-6">
               <div className="space-y-1">
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-pencil-blue-100 text-pencil-blue-800 text-[10px] font-bold">
+                {/* <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-pencil-blue-100 text-pencil-blue-800 text-[10px] font-bold">
                   <Stethoscope className="w-3 h-3 text-pencil-blue-600" />
                   <span>Voluntary Disclosure</span>
-                </div>
+                </div> */}
                 <h2 className="text-lg font-serif font-bold text-coffee-950">
                   Section E: Health Considerations
                 </h2>
@@ -1223,12 +1223,12 @@ export default function ProfilePage() {
               </div>
 
               {/* Clinical Scope Notice */}
-              <div className="p-3.5 bg-beige-50 rounded-2xl border border-beige-300 text-xs text-coffee-800 flex items-start gap-2.5">
+              {/* <div className="p-3.5 bg-beige-50 rounded-2xl border border-beige-300 text-xs text-coffee-800 flex items-start gap-2.5">
                 <Info className="w-4 h-4 text-pencil-blue-600 shrink-0 mt-0.5" />
                 <p className="leading-relaxed">
                   <strong>Important Notice:</strong> NutriAgent is an educational decision-support tool. It does <strong>not</strong> provide medical diagnoses, treatment plans, or clinician prescriptions. Only provide information you are comfortable saving on your device.
                 </p>
-              </div>
+              </div> */}
 
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
                 {[
