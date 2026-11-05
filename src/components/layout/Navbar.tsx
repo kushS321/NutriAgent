@@ -25,12 +25,12 @@ export default function Navbar() {
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isGuest, setIsGuest] = useState(true);
-  const [userName, setUserName] = useState('Guest');
+  const [userName, setUserName] = useState('');
 
   useEffect(() => {
     const profile = UserRepository.getProfile();
     setIsGuest(profile.isGuest);
-    setUserName(profile.name || 'Guest');
+    setUserName(profile.name || 'Member');
   }, [pathname]);
 
   const navLinks = [
@@ -100,7 +100,7 @@ export default function Navbar() {
                 <span className="max-w-[110px] truncate">{userName}</span>
               </Link>
             )} */}
-            : (
+            {/* : (
               <Link
                 href="/profile"
                 className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold text-coffee-800 bg-white rounded-xl border border-beige-300 hover:bg-beige-100 transition-colors shadow-subtle"
@@ -110,7 +110,35 @@ export default function Navbar() {
                 </div>
                 <span className="max-w-[110px] truncate">{userName}</span>
               </Link>
-            )
+            ) */}
+
+
+          {/* User Profile + Sign Out (signed-in members only) */}
+            {!isGuest && (
+              <>
+                <Link
+                  href="/profile"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold text-coffee-800 bg-white rounded-xl border border-beige-300 hover:bg-beige-100 transition-colors shadow-subtle"
+                >
+                  <div className="w-4 h-4 rounded-full bg-pencil-sage-100 text-pencil-sage-800 flex items-center justify-center text-[10px] font-bold shrink-0">
+                    {userName.charAt(0).toUpperCase()}
+                  </div>
+                  <span className="max-w-[110px] truncate">{userName}</span>
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => {
+                    UserRepository.logoutUser();
+                    UserRepository.clearEntered();
+                    router.push('/auth/signin');
+                  }}
+                  className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-pencil-terracotta-600 rounded-xl border border-beige-300 hover:bg-beige-100 transition-colors"
+                >
+                  <LogOut className="w-3.5 h-3.5" />
+                  <span>Sign Out</span>
+                </button>
+              </>
+            )}
 
             {/* Primary Action Button */}
             <Link

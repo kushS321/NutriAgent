@@ -92,11 +92,11 @@ export default function SignInPage() {
     }
   };
 
-  const handleContinueGuest = () => {
-    UserRepository.logoutUser();
-    UserRepository.markEntered();
-    router.push('/dashboard');
-  };
+  // const handleContinueGuest = () => {
+  //   UserRepository.logoutUser();
+  //   UserRepository.markEntered();
+  //   router.push('/dashboard');
+  // };
 
   const handleForgotPasswordSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -267,7 +267,7 @@ export default function SignInPage() {
           </form>
 
           {/* Guest Mode & Register Navigation */}
-          <div className="pt-4 border-t border-beige-200 space-y-3 text-center">
+          {/* <div className="pt-4 border-t border-beige-200 space-y-3 text-center">
             <p className="text-xs text-coffee-700">
               Don&apos;t have an account yet?{' '}
               <Link
@@ -295,6 +295,19 @@ export default function SignInPage() {
               <span className="text-[10px] text-coffee-500 font-normal">
               </span>
             </button>
+          </div> */}
+
+          {/* Register Navigation */}
+          <div className="pt-4 border-t border-beige-200 space-y-3 text-center">
+            <p className="text-xs text-coffee-700">
+              Don&apos;t have an account yet?{' '}
+              <Link
+                href="/auth/signup"
+                className="font-bold text-coffee-950 underline hover:text-pencil-sage-700 transition-colors"
+              >
+                Create an account
+              </Link>
+            </p>
           </div>
         </div>
       </div>
