@@ -25,7 +25,7 @@ export default function Navbar() {
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isGuest, setIsGuest] = useState(true);
-  const [userName, setUserName] = useState('');
+  const [userName, setUserName] = useState('Guest');
 
   useEffect(() => {
     const profile = UserRepository.getProfile();
