@@ -499,7 +499,6 @@ export default function ProfilePage() {
             <p className="text-[11px] text-coffee-400">
               Last updated: {new Date(profile.updatedAt).toLocaleDateString()}
             </p>
-          </div>
         </div>
 
         {/* Profile Completion Meter & Save Button */}
