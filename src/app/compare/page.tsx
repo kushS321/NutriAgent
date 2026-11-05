@@ -73,9 +73,9 @@ function ProductCompareContent() {
         <h1 className="text-3xl font-serif font-bold text-coffee-950 tracking-tight">
           Compare Two Foods Side-by-Side
         </h1>
-        <p className="text-xs sm:text-sm text-coffee-600">
+        {/* <p className="text-xs sm:text-sm text-coffee-600">
           Understand nutritional trade-offs on an apples-to-apples basis. We explain key differences without declaring one food universally &ldquo;healthiest.&rdquo;
-        </p>
+        </p> */}
       </div>
 
       {/* Selectors & Serving Basis Controls */}
