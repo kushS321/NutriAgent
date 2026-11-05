@@ -239,7 +239,7 @@ export default function SignUpPage() {
                   autoComplete="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="your.email@example.com"
+                  placeholder="example@gmail.com"
                   className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-beige-300 bg-beige-50/50 text-coffee-950 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-coffee-700 focus:bg-white transition-all"
                   required
                 />
