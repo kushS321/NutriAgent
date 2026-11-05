@@ -535,7 +535,7 @@ function FoodScannerContent() {
               <Barcode className="w-5 h-5 text-coffee-700" />
               <div>
                 <h3 className="text-sm font-serif font-bold text-coffee-950">
-                  Or Type Barcode Number Manually
+                  Barcode Number
                 </h3>
                 <p className="text-xs text-coffee-500">
                   Enter the 8, 12, or 13-digit code printed beneath the barcode stripes.
@@ -571,7 +571,7 @@ function FoodScannerContent() {
           <div className="card-warm bg-[#FAF8F5] border border-beige-200 p-5 space-y-3">
             <div className="flex items-center justify-between">
               <span className="text-xs font-serif font-bold text-coffee-900">
-                Quick Test Products (Instant Verified Data)
+                Recent Test Products
               </span>
               <span className="text-[11px] text-coffee-500">Click to evaluate</span>
             </div>
