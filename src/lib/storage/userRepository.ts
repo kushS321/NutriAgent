@@ -610,10 +610,10 @@ export class UserRepository {
     // Reset active profile to guest state
     const guest = {
       ...DEFAULT_GUEST_PROFILE,
-      id: '', //guest-user-default
-      name: '',//Guest Explorer
-      // isGuest: true,
-      // email: undefined,
+      id: 'guest-user-default',
+      name: 'Guest Explorer',
+      isGuest: true,
+      email: undefined,
     };
     this.saveProfile(guest);
   }
