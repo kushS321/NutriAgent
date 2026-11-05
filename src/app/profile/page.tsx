@@ -485,19 +485,12 @@ export default function ProfilePage() {
           </div>
 
           {/* User Identifiers */}
-          <div className="space-y-1">
             <div className="flex flex-wrap items-center gap-2">
               <h1 className="text-xl sm:text-2xl font-serif font-bold text-coffee-950">
-                {profile.isGuest ? 'Guest Explorer' : name}
+                {name}
               </h1>
-              <span
-                className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full border ${
-                  profile.isGuest
-                    ? 'bg-beige-100 text-coffee-700 border-beige-300'
-                    : 'bg-pencil-sage-50 text-pencil-sage-700 border-pencil-sage-200'
-                }`}
-              >
-                {profile.isGuest ? 'Guest Mode' : 'Verified Member'}
+              <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full border bg-pencil-sage-50 text-pencil-sage-700 border-pencil-sage-200">
+                Verified Member
               </span>
             </div>
             {/* <p className="text-xs text-coffee-600">
