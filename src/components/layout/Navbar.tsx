@@ -92,15 +92,15 @@ export default function Navbar() {
           {/* Right items */}
           <div className="flex items-center gap-2 sm:gap-3">
             {/* User Profile / Auth Pill */}
-            {!isGuest && (
-            //   <Link href="/profile" className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold text-coffee-800 bg-white rounded-xl border border-beige-300 hover:bg-beige-100 transition-colors shadow-subtle">
-            //     <div className="w-4 h-4 rounded-full bg-pencil-sage-100 text-pencil-sage-800 flex items-center justify-center text-[10px] font-bold shrink-0">
-            //       {userName.charAt(0).toUpperCase()}
-            //     </div>
-            //     <span className="max-w-[110px] truncate">{userName}</span>
-            //   </Link>
-            // )}
-            // : (
+            {/* {!isGuest && (
+              <Link href="/profile" className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold text-coffee-800 bg-white rounded-xl border border-beige-300 hover:bg-beige-100 transition-colors shadow-subtle">
+                <div className="w-4 h-4 rounded-full bg-pencil-sage-100 text-pencil-sage-800 flex items-center justify-center text-[10px] font-bold shrink-0">
+                  {userName.charAt(0).toUpperCase()}
+                </div>
+                <span className="max-w-[110px] truncate">{userName}</span>
+              </Link>
+            )} */}
+            : (
               <Link
                 href="/profile"
                 className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold text-coffee-800 bg-white rounded-xl border border-beige-300 hover:bg-beige-100 transition-colors shadow-subtle"
@@ -110,16 +110,16 @@ export default function Navbar() {
                 </div>
                 <span className="max-w-[110px] truncate">{userName}</span>
               </Link>
-            )}
+            )
 
             {/* Primary Action Button */}
-            {/* <Link
+            <Link
               href="/scan"
               className="hidden sm:inline-flex items-center gap-1.5 btn-pencil-brown text-xs py-2 px-3.5 font-bold"
             >
               <Barcode className="w-3.5 h-3.5 text-pencil-sage-300" />
               <span>Check Food</span>
-            </Link> */}
+            </Link>
 
             {/* Mobile Menu Trigger */}
             <button
@@ -158,7 +158,7 @@ export default function Navbar() {
             })}
           </div>
 
-          {!isGuest && (
+            {!isGuest && (
             <div className="pt-3 border-t border-beige-200 flex items-center justify-between">
               <Link
                 href="/profile"

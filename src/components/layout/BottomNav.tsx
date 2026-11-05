@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
   LayoutDashboard,
-  // Barcode,
+  Barcode,
   Utensils,
   Bot,
   User,
@@ -17,7 +17,7 @@ export default function BottomNav() {
   const items = [
     { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { href: '/meal-planner', label: 'Diary', icon: Utensils },
-    // { href: '/scan', label: 'Check Food', icon: Barcode, center: true },
+    { href: '/scan', label: 'Check Food', icon: Barcode, center: true },
     { href: '/assistant', label: 'Assistant', icon: Bot },
     { href: '/profile', label: 'Profile', icon: User },
   ];
@@ -29,22 +29,22 @@ export default function BottomNav() {
           const Icon = item.icon;
           const isActive = pathname === item.href;
 
-          // if (item.center) {
-          //   return (
-          //     <Link
-          //       key={item.href}
-          //       href={item.href}
-          //       className="flex flex-col items-center justify-center -mt-5 group"
-          //     >
-          //       <div className="w-12 h-12 rounded-full bg-coffee-800 text-[#FAF7F2] flex items-center justify-center shadow-warm group-active:scale-95 transition-transform border-2 border-white">
-          //         <Icon className="w-6 h-6 text-pencil-sage-300" />
-          //       </div>
-          //       <span className="text-[10px] font-bold text-coffee-900 mt-0.5">
-          //         Check Food
-          //       </span>
-          //     </Link>
-          //   );
-          // }
+          if (item.center) {
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="flex flex-col items-center justify-center -mt-5 group"
+              >
+                <div className="w-12 h-12 rounded-full bg-coffee-800 text-[#FAF7F2] flex items-center justify-center shadow-warm group-active:scale-95 transition-transform border-2 border-white">
+                  <Icon className="w-6 h-6 text-pencil-sage-300" />
+                </div>
+                <span className="text-[10px] font-bold text-coffee-900 mt-0.5">
+                  Check Food
+                </span>
+              </Link>
+            );
+          }
 
           return (
             <Link
